@@ -20,7 +20,7 @@ class TestProductAPI:
                 print(data)
 
     with allure.step('Verify Products not in Stock'):
-        def test_products_not_inStock(self, api_request_context):
+        def test_products_not_in_stock(self, api_request_context):
             products = ProductAPI(api_request_context)
             response=products.get_product_not_in_stock()
             jsondata=response.json()

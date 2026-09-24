@@ -1,24 +1,21 @@
-import params
-
-from config import config
-
 class ProductAPI:
+    """Encapsulates product-related API interactions."""
 
-    ENDPOINT = '/products'
+    ENDPOINT = "/products"
 
-    def __init__(self, request_context):
-        self.request_context=request_context
+    def __init__(self, api_request_context):
+        self.api_request_context = api_request_context
 
     def get_products(self):
-        return self.request_context.get(self.ENDPOINT)
+        return self.api_request_context.get(self.ENDPOINT)
 
     def get_product_not_in_stock(self):
-        return self.request_context.get(self.ENDPOINT)
+        return self.api_request_context.get(self.ENDPOINT, params={"inStock": "false"})
 
     def get_product_by_id(self, product_id):
-        return self.request_context.get(self.ENDPOINT+'/'+str(product_id))
+        return self.api_request_context.get(f"{self.ENDPOINT}/{product_id}")
 
     def get_product_by_name(self, name):
-        return self.request_context.get(self.ENDPOINT,params={'name':name})
+        return self.api_request_context.get(self.ENDPOINT, params={"name": name})
 
 
